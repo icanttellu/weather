@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="h2">Translation of <strong class="yozuv">"sanoat"</strong></h2>
+        <input type="password" id="password" placeholder="Answer">
+        <button onclick="validatePassword()">Submit</button>
+        <div class="timer" id="timer">Time left: 20 seconds</div>
+    </div>
+<script>
+    const correctPassword = "industry"; // Set your correct password here
+    let attempts = 0;
+    const maxAttempts = 3; // Maximum number of attempts
+    const timeoutDuration = 20000; // 20 seconds timeout
+    let timeout;
+    let timerInterval;
+
+    function validatePassword() {
+        const inputPassword = document.getElementById("password").value;
+
+        if (inputPassword === correctPassword) {
+            // Redirect to the next page
+            window.location.href = "45.html"; // Change this to your desired page
+        } else {
+            attempts++;
+            alert("Password incorrect. Try again.");
+            if (attempts >= maxAttempts) {
+                alert("Too many attempts.You lost...");
+                clearTimeout(timeout);
+                clearInterval(timerInterval);
+                window.location.href = "lost page.html";
+            }
+        }
+    }
+
+    function startTimer() {
+        let timeLeft = timeoutDuration / 1000; // Convert to seconds
+        document.getElementById("timer").innerText = `Time left: ${timeLeft} seconds`;
+
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            document.getElementById("timer").innerText = `Time left: ${timeLeft} seconds`;
+
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                alert("Time's up! You lost......");
+                window.location.href = "lost page.html";
+            }
+        }, 1000);
+    }
+
+    // Start the timer countdown
+    timeout = setTimeout(() => {
+        alert("Time's up! You lost...");
+        window.location.href = "lost page.html";
+    }, timeoutDuration);
+
+    startTimer();
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Themed Typing Site</title>
+    <style>
+        body {
+            background-color: #121212; /* Dark background */
+            color: #ffffff; /* White text */
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1, h2 {
+            animation: fadeIn 1s ease-in-out;
+            font-size: 3rem; /* Increased font size for headers */
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        p {
+            animation: slideIn 1s ease-in-out;
+            text-align: center;
+            margin: 0 40px; /* Increased margin for paragraphs */
+            font-size: 1.5rem; /* Increased font size for paragraphs */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px; /* Increased padding for the container */
+            border: 1px solid #ffffff;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .countdown {
+            font-size: 4rem; /* Increased font size for countdown */
+            margin-top: 30px;
+            opacity: 1; /* Initial opacity */
+            transition: opacity 0.5s ease; /* Smooth transition for opacity */
+        }
+    button {
+    height: 70px;
+    padding: 10px;
+    width: 100%;
+    background:transparent;
+    color: white;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    cursor: pointer;
+    margin:35px 0px 5px;
+    }
+
+button:hover {
+    background-color: #3b3b3b;
+    transition: all 0.7s ;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <p>Get some rest</p>
+        <button class="skip" onclick="location.href='50.html'">Skip</button>
+        <div class="countdown" id="countdown">20</div>
+    </div>
+
+    <script>
+        let countdown = 20;
+        const countdownElement = document.getElementById('countdown');
+
+        const timer = setInterval(() => {
+            countdownElement.style.opacity = 0; // Start fading out
+
+            setTimeout(() => {
+                countdown--; // Update countdown after fade out
+                countdownElement.textContent = countdown;
+
+                countdownElement.style.opacity = 1; // Fade in the new number
+
+                if (countdown <= 0) {
+                    clearInterval(timer);
+                    window.location.href = '50.html'; // Redirect to 1.html
+                }
+            }, 500); // Wait for fade out to finish before updating
+        }, 1000);
+    </script>
+
+</body>
+</html>

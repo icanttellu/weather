@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background:url(dark-abstract-black-minimal-4k-q0-2880x1800.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    color: white;
+}
+h1{
+    color: rgb(173, 197, 211);
+    font-size: 1.2em;
+}
+.container {
+    border: 2px solid rgb(255, 255, 255);
+    backdrop-filter: blur(3px);
+    max-width: 600px;
+    margin: auto;
+    background: transparent;
+    padding: 60px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 60px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"] {
+    margin-bottom: 100px;
+    width: 95.6%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #3d3d3d;
+    color: white;
+}
+
+button {
+    margin-bottom: 100px;
+    padding: 10px 15px;
+    margin: 5px;
+    height: 60px;
+    border: 2px solid white;
+    border-radius: 20px;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4b4b4b;
+    transition: all .4s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+ol {
+    padding-left: 20px;
+}
+#clearLastButton{
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background: transparent;
+    cursor:default;
+    border: none;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button id="clearLastButton"></button>
+        <h1>Congratulation! you found all answers and wrote correctly.</h1>
+        <h1>Please enter your name here</h1>
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button class="button" id="submitButton">Submit</button>
+        <button class="button" id="showButton">Show Leaderboard</button>
+        <div id="leaderboard" class="hidden">
+            <h2>Leaderboard</h2>
+            <ol id="leaderboardList"></ol>
+        </div>
+    </div>
+    <script>
+// script.js
+document.addEventListener('DOMContentLoaded', () => {
+    const nameInput = document.getElementById('nameInput');
+    const submitButton = document.getElementById('submitButton');
+    const showButton = document.getElementById('showButton');
+    const clearLastButton = document.getElementById('clearLastButton');
+    const leaderboard = document.getElementById('leaderboard');
+    const leaderboardList = document.getElementById('leaderboardList');
+
+    // Retrieve names from local storage or initialize an empty array
+    let names = JSON.parse(localStorage.getItem('names')) || [];
+
+    // Function to update the leaderboard display
+    const updateLeaderboardDisplay = () => {
+        leaderboardList.innerHTML = ''; // Clear previous list
+        if (names.length > 0) {
+            names.forEach((name, index) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${index + 1}. ${name}`; // Display rank
+                leaderboardList.appendChild(listItem);
+            });
+            leaderboard.classList.remove('hidden');
+        } else {
+            leaderboard.classList.add('hidden');
+        }
+    };
+
+    // Event listener for the submit button
+    submitButton.addEventListener('click', () => {
+        const name = nameInput.value.trim();
+        if (name) {
+            names.push(name);
+            localStorage.setItem('names', JSON.stringify(names));
+            nameInput.value = '';
+            alert('Name saved!');
+            updateLeaderboardDisplay(); // Update display after adding a name
+        } else {
+            alert('Please enter a name.');
+        }
+    });
+
+    // Event listener for the show button
+    showButton.addEventListener('click', () => {
+        updateLeaderboardDisplay(); // Update display when showing the leaderboard
+    });
+
+    // Event listener for the clear last name button
+    clearLastButton.addEventListener('click', () => {
+        if (names.length > 0) {
+            names.pop(); // Remove the last name
+            localStorage.setItem('names', JSON.stringify(names)); // Update local storage
+            alert('Last name cleared!');
+            updateLeaderboardDisplay(); // Update display after clearing a name
+        } else {
+            alert('No names to clear.');
+        }
+    });
+});
+    </script>
+</body>
+</html>

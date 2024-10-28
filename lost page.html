@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Again Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .container {
+            text-align: center;
+            padding: 60px 30px; /* Increased padding */
+            background: rgba(34, 34, 34, 0.8); /* Darker background with transparency */
+            border-radius: 20px; /* More rounded corners */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            box-shadow: 0 6px 30px rgba(255, 255, 255, 0.2); /* Subtle shadow */
+            max-width: 600px; /* Increased max width */
+            width: 90%; /* Responsive width */
+            animation: slideIn 0.5s ease-in-out, scaleIn 0.5s ease-in-out; /* Added scale animation */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Light border for glass effect */
+        }
+
+        h1, h2 , h3 {
+            margin: 20px 0; /* Increased margin */
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        h1 {
+            animation-delay: 0.5s;
+            font-size: 32px; /* Increased font size */
+        }
+
+        h2 {
+            animation-delay: 1.5s;
+            font-size: 24px; /* Increased font size */
+        }
+        h3 {
+            animation-delay: 2s;
+            font-size: 24px; /* Increased font size */
+        }
+        .try-again-button {
+            margin-top: 30px; /* Increased margin */
+            padding: 15px 30px; /* Increased padding */
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 10px; /* More rounded corners */
+            cursor: pointer;
+            font-size: 18px; /* Increased font size */
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform transition */
+            opacity: 0;
+            animation: fadeIn 1s forwards, bounce 0.5s ease forwards; /* Added bounce animation */
+            animation-delay: 3s;
+        }
+
+        .try-again-button:hover {
+            background-color: gray;
+            transform: scale(1.1); /* Button grow effect on hover */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Congrats!You lost</h1>
+        <h2>I think you need to practice and try again</h1>
+        <h3>If you want to try again just press the button</h2>
+        <a href="1.html">
+            <button class="try-again-button">Try Again</button>
+        </a>
+    </div>
+</body>
+</html>
